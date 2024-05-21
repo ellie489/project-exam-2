@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../services/api';
 
 const RegisterForm = ({ onSubmit, isVenueManager }) => {
     const [username, setUsername] = useState('');
@@ -7,6 +9,7 @@ const RegisterForm = ({ onSubmit, isVenueManager }) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,6 +24,18 @@ const RegisterForm = ({ onSubmit, isVenueManager }) => {
             await onSubmit(user);
             setSuccess(true);
             setError(null);
+
+          
+            const credentials = { email, password };
+            const loginResponse = await loginUser(credentials);
+            localStorage.setItem('token', loginResponse.token);
+
+           
+            if (isVenueManager) {
+                navigate('/manager-dashboard');
+            } else {
+                navigate('/customer-dashboard');
+            }
         } catch (error) {
             setError(error.message);
             setSuccess(false);
@@ -69,7 +84,6 @@ const RegisterForm = ({ onSubmit, isVenueManager }) => {
     );
 };
 
-// Define prop types
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     isVenueManager: PropTypes.bool.isRequired,
