@@ -1,0 +1,26 @@
+.venues-list {
+  padding: 20px;
+}
+
+.venue-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.venue-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.venue-item h3 {
+  margin-top: 0;
+}
+
+.venue-item p {
+  margin: 5px 0;
+}

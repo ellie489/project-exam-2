@@ -1,15 +1,21 @@
 {
   "name": "holidaze",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+    "leaflet": "^1.9.4",
+    "node-fetch": "^3.3.2",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
+    "react-calendar": "^5.0.0",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "sass": "^1.77.0",
     "web-vitals": "^2.1.4"
@@ -41,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "husky": "^9.0.11",
@@ -48,18 +55,11 @@
     "prettier": "^3.2.5"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --fix"
     ],
-    "*.jsx": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.html": [
-      "prettier --write"
-    ],
-    "*.scss": [
+    "*.{css,scss,md,json,html}": [
       "prettier --write"
     ]
   }

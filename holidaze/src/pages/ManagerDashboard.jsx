@@ -1,4 +1,3 @@
-// src/pages/ManagerDashboard.jsx
 import React from 'react';
 
 const ManagerDashboard = () => {

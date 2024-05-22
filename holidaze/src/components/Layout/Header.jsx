@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Header = () => {
+    const { user, logout } = useAuth();  
+
+    const handleLogout = () => {
+        logout();  
+    };
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link className="navbar-brand" to="/">Accommodation Booking</Link>
@@ -13,15 +20,19 @@ const Header = () => {
                     <li className="nav-item">
                         <Link className="nav-link" to="/contact">Contact</Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/register-customer">Register as Customer</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/register-manager">Register as Manager</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/login">Log In</Link>
-                    </li>
+                </ul>
+                <ul className="navbar-nav ml-auto">
+                    {user ? (
+                        <li className="nav-item">
+                            <button className="btn btn-link nav-link" onClick={handleLogout}>
+                                Logout
+                            </button>
+                        </li>
+                    ) : (
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/login-or-register">Login / Register</Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </nav>

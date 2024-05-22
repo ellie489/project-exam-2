@@ -1,11 +1,13 @@
 import React from 'react';
+import VenuesList from '../components/Venues/VenuesList';
 
-const Home = () => {
-  return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
-  );
+const Homepage = () => {
+    return (
+        <div className="homepage">
+            <h1>Welcome to Our Venue Booking Platform</h1>
+            <VenuesList />
+        </div>
+    );
 };
 
-export default Home;
+export default Homepage;
