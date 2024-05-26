@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { deleteVenue } from '../../services/api/venues';
 import { fetchManagerVenues } from '../../services/api/profiles';
 import { Card, Button, Row, Col, Container } from 'react-bootstrap';
+import ErrorBox from '../ErrorBox';
 
 const MyVenues = () => {
     const { user } = useAuth();
@@ -52,7 +53,7 @@ const MyVenues = () => {
     }
 
     if (error) {
-        return <p className="text-danger">Error: {error}</p>;
+        return <ErrorBox message={error} />;
     }
 
     return (

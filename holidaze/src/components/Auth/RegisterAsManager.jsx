@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { registerUser, loginUser } from '../../services/api/auth';
+import ErrorBox from '../ErrorBox'; 
 
 const RegisterAsManager = () => {
   const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
@@ -29,7 +30,7 @@ const RegisterAsManager = () => {
     try {
       await registerUser({ ...registerData, isManager: true });
       const loginResponse = await loginUser({ email: registerData.email, password: registerData.password });
-      navigate('/manager-dashboard');
+      navigate('/profile');
     } catch (error) {
       setError(error.message);
     }
@@ -43,7 +44,6 @@ const RegisterAsManager = () => {
     <div className="form-container">
       <div className="form-box">
         <h2>Register as Manager</h2>
-        {error && <p className="text-danger">{error}</p>}
         <form onSubmit={handleRegisterSubmit}>
           <div className="form-group">
             <label>Name:</label>
@@ -77,7 +77,8 @@ const RegisterAsManager = () => {
           </div>
           <button type="submit" className="button large primary blue mb-4">Register</button>
         </form>
-        <button onClick={handleBack} className="button secondary mb-4">Back</button>
+        {error && <ErrorBox message={error} />}
+        <button onClick={handleBack} className="button large secondary blue mb-4">Back</button>
       </div>
     </div>
   );

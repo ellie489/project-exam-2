@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BookingForm from '../Booking/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import ErrorBox from '../ErrorBox'; 
 import styles from './VenueDetails.module.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -50,7 +51,7 @@ const CustomerVenueDetails = () => {
     }
   
     if (error) {
-      return <p className="text-danger">Error: {error}</p>;
+      return <ErrorBox message={error} />;
     }
   
     const hasCoordinates = venue && venue.location.lat && venue.location.lng;

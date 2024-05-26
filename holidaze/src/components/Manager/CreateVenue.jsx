@@ -5,6 +5,7 @@ import { createVenue } from '../../services/api/venues';
 import 'leaflet/dist/leaflet.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import ErrorBox from '../ErrorBox';
 import styles from './Form.module.css';
 
 const CreateVenue = () => {
@@ -369,6 +370,7 @@ const CreateVenue = () => {
                     Cancel
                 </button>
             </form>
+            {errors.form && <ErrorBox message={errors.form} />}
         </div>
     );
 };

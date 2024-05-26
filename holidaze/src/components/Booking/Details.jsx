@@ -5,7 +5,9 @@ import 'react-calendar/dist/Calendar.css';
 import { fetchBookingById, updateBooking, deleteBooking } from '../../services/api/bookings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons';
-import styles from './Form.module.css'; // Assuming Form.module.css is the same as in create booking
+import { Container, Row, Col } from 'react-bootstrap';
+import styles from './Form.module.css';
+import ErrorBox from '../ErrorBox';
 
 const BookingDetails = () => {
     const { id } = useParams();
@@ -54,10 +56,10 @@ const BookingDetails = () => {
         try {
             await updateBooking(id, {
                 ...formData,
-                guests: Number(formData.guests), // Ensure guests is a number
+                guests: Number(formData.guests), 
             });
             setEditMode(false);
-            navigate(0); // Reload the page to reflect the changes
+            navigate(0); 
         } catch (error) {
             setError(error.message);
         }
@@ -67,7 +69,7 @@ const BookingDetails = () => {
         if (window.confirm('Are you sure you want to delete this booking?')) {
             try {
                 await deleteBooking(id);
-                navigate('/bookings'); // Redirect to bookings list after deletion
+                navigate('/my-bookings'); 
             } catch (error) {
                 setError(error.message);
             }
@@ -98,7 +100,7 @@ const BookingDetails = () => {
     }
 
     if (error) {
-        return <p className="text-danger">Error: {error}</p>;
+        return <ErrorBox message={error} />;
     }
 
     if (!booking) {
@@ -106,97 +108,113 @@ const BookingDetails = () => {
     }
 
     return (
-        <div className={styles.formBox}>
+        <Container className={styles.formBox}>
             <h2>Booking Details</h2>
             {editMode ? (
                 <form onSubmit={handleUpdate}>
-                    <div className={styles.formGroup}>
-                        <label htmlFor="dateRange">Select Dates</label>
-                        <input
-                            type="text"
-                            id="dateRange"
-                            className={styles.inputField}
-                            onFocus={() => setCalendarVisible(true)}
-                            readOnly
-                            value={`${formData.dateFrom} - ${formData.dateTo}`}
-                        />
-                        {calendarVisible && (
-                            <div className={`${styles.calendar} ${styles.calendarVisible}`}>
+                    <Row className={styles.formGroup}>
+                        <Col>
+                            <label htmlFor="dateRange">Select Dates</label>
+                            <input
+                                type="text"
+                                id="dateRange"
+                                className={styles.inputField}
+                                onFocus={() => setCalendarVisible(true)}
+                                readOnly
+                                value={`${formData.dateFrom} - ${formData.dateTo}`}
+                            />
+                            {calendarVisible && (
+                                <div className={`${styles.calendar} ${styles.calendarVisible}`}>
+                                    <button
+                                        type="button"
+                                        className={styles.closeButton}
+                                        onClick={() => setCalendarVisible(false)}
+                                    >
+                                        <FontAwesomeIcon icon={faTimes} />
+                                    </button>
+                                    <Calendar
+                                        onChange={(dates) => {
+                                            setFormData({
+                                                ...formData,
+                                                dateFrom: new Date(dates[0]).toISOString().substring(0, 10),
+                                                dateTo: new Date(dates[1]).toISOString().substring(0, 10),
+                                            });
+                                        }}
+                                        selectRange
+                                        value={[new Date(formData.dateFrom), new Date(formData.dateTo)]}
+                                        tileDisabled={tileDisabled}
+                                    />
+                                </div>
+                            )}
+                        </Col>
+                    </Row>
+                    <Row className={styles.formGroup}>
+                        <Col>
+                            <label>Guests</label>
+                            <div className={styles.guestsInputContainer}>
                                 <button
                                     type="button"
-                                    className={styles.closeButton}
-                                    onClick={() => setCalendarVisible(false)}
+                                    className={styles.guestsButton}
+                                    onClick={decrementGuests}
                                 >
-                                    <FontAwesomeIcon icon={faTimes} />
+                                    <FontAwesomeIcon icon={faMinus} />
                                 </button>
-                                <Calendar
-                                    onChange={(dates) => {
-                                        setFormData({
-                                            ...formData,
-                                            dateFrom: new Date(dates[0]).toISOString().substring(0, 10),
-                                            dateTo: new Date(dates[1]).toISOString().substring(0, 10),
-                                        });
-                                    }}
-                                    selectRange
-                                    value={[new Date(formData.dateFrom), new Date(formData.dateTo)]}
-                                    tileDisabled={tileDisabled}
+                                <input
+                                    type="number"
+                                    className={styles.guestsInput}
+                                    name="guests"
+                                    value={formData.guests}
+                                    onChange={handleChange}
+                                    min="1"
                                 />
+                                <button
+                                    type="button"
+                                    className={styles.guestsButton}
+                                    onClick={incrementGuests}
+                                >
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </button>
                             </div>
-                        )}
-                    </div>
-                    <div className={styles.formGroup}>
-                        <label>Guests</label>
-                        <div className={styles.guestsInputContainer}>
-                            <button
-                                type="button"
-                                className={styles.guestsButton}
-                                onClick={decrementGuests}
-                            >
-                                <FontAwesomeIcon icon={faMinus} />
-                            </button>
-                            <input
-                                type="number"
-                                className={styles.guestsInput}
-                                name="guests"
-                                value={formData.guests}
-                                onChange={handleChange}
-                                min="1"
-                            />
-                            <button
-                                type="button"
-                                className={styles.guestsButton}
-                                onClick={incrementGuests}
-                            >
-                                <FontAwesomeIcon icon={faPlus} />
-                            </button>
-                        </div>
-                    </div>
-                    <button type="submit" className={`${styles.submitButton} button primary green large`}>Save</button>
-                    <button type="button" className="btn btn-secondary" onClick={() => setEditMode(false)}>
-                        Cancel
-                    </button>
+                        </Col>
+                    </Row>
+                    <Row className="col-12 d-flex flex-column flex-md-row justify-content-center align-items-center">
+                        <button type="button" className="button large secondary green" onClick={() => setEditMode(false)}>
+                            Cancel
+                        </button>
+                        <button type="submit" className="button large primary green mb-2 mb-md-0 me-md-2">Save</button>
+                    </Row>
                 </form>
             ) : (
                 <>
-                    <p><strong>Booking ID:</strong> {booking.id}</p>
-                    <p><strong>Date From:</strong> {new Date(booking.dateFrom).toLocaleDateString()}</p>
-                    <p><strong>Date To:</strong> {new Date(booking.dateTo).toLocaleDateString()}</p>
-                    <p><strong>Guests:</strong> {booking.guests}</p>
-                    <h3>Venue Details</h3>
-                    {booking.venue && (
-                        <>
-                            <p><strong>Venue Name:</strong> {booking.venue.name}</p>
-                            {booking.venue.media && booking.venue.media.length > 0 && (
-                                <img src={booking.venue.media[0].url} alt={booking.venue.media[0].alt} style={{ maxWidth: '100%' }} />
+                    <Row>
+                        <Col>
+                            <p><strong>Booking ID:</strong> {booking.id}</p>
+                            <p><strong>Date From:</strong> {new Date(booking.dateFrom).toLocaleDateString()}</p>
+                            <p><strong>Date To:</strong> {new Date(booking.dateTo).toLocaleDateString()}</p>
+                            <p><strong>Guests:</strong> {booking.guests}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h3>Venue Details</h3>
+                            {booking.venue && (
+                                <>
+                                    <p><strong>Venue Name:</strong> {booking.venue.name}</p>
+                                    {booking.venue.media && booking.venue.media.length > 0 && (
+                                        <img src={booking.venue.media[0].url} alt={booking.venue.media[0].alt} style={{ maxWidth: '100%' }} />
+                                    )}
+                                    <p>{booking.venue.description}</p>
+                                </>
                             )}
-                            <p>{booking.venue.description}</p>
-                        </>
-                    )}
-                    <button className="btn btn-warning" onClick={() => setEditMode(true)}>Edit</button>
-                    <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                        </Col>
+                    </Row>
+                    <Row className="d-flex justify-content-center">
+                        <button className="button primary green large me-2" onClick={() => setEditMode(true)}>Edit</button>
+                        <button className="button secondary red large" onClick={handleDelete}>Delete</button>
+                    </Row>
                 </>
             )}
-        </div>
+        </Container>
     );
 };
 

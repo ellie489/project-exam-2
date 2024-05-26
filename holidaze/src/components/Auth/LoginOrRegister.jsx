@@ -5,6 +5,7 @@ import { loginUser, registerUser } from '../../services/api/auth';
 import styles from './index.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import ErrorBox from '../ErrorBox';
 
 /**
  * LoginOrRegister component provides the user interface for logging in or registering.
@@ -56,7 +57,7 @@ const LoginOrRegister = () => {
     try {
       const userData = await loginUser(credentials);
       login(userData);
-      navigate('/customer-dashboard');
+      navigate('/profile');
     } catch (error) {
       setError(error.message);
     }
@@ -85,7 +86,7 @@ const LoginOrRegister = () => {
       await registerUser(registerData);
       const loginResponse = await loginUser({ email: registerData.email, password: registerData.password });
       login(loginResponse);
-      navigate('/customer-dashboard');
+      navigate('/profile');
     } catch (error) {
       setError(error.message);
     }
@@ -109,7 +110,7 @@ const LoginOrRegister = () => {
     <div className="form-container">
       <div className="form-box">
         <h2>{isRegistering ? 'Register' : 'Login'}</h2>
-        {error && <p className="text-danger">{error}</p>}
+        
         {isRegistering ? (
           <form onSubmit={handleRegisterSubmit}>
             <div className="form-group">
@@ -168,7 +169,7 @@ const LoginOrRegister = () => {
             </div>
             <button type="submit" className="button large primary blue mb-4">Login</button>
           </form>
-        )}
+        )}{error && <ErrorBox message={error} />}
         <div>   </div>
           {isRegistering ? (
             <p>
@@ -176,7 +177,7 @@ const LoginOrRegister = () => {
             </p>
           ) : (
             <p>
-              Don’t have an account? <button className="link-button" onClick={toggleForm}>Register here</button>
+              Don´t have an account? <button className="link-button" onClick={toggleForm}>Register here</button>
             </p>
           )}
         </div>

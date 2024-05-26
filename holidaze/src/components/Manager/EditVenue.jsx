@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { fetchVenueById, updateVenue } from '../../services/api/venues';
 import 'leaflet/dist/leaflet.css';
+import ErrorBox from '../ErrorBox'; 
 
 const EditVenue = () => {
     const { id } = useParams();
@@ -329,6 +330,7 @@ const EditVenue = () => {
                     Cancel
                 </button>
             </form>
+            {error && <ErrorBox message={error} />}
         </div>
     );
 };

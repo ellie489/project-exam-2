@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { fetchUserBookings } from '../../services/api/bookings';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './MyBookings.module.css';
+import ErrorBox from '../ErrorBox'; 
 
 const MyBookings = () => {
     const { user } = useAuth();
@@ -37,7 +38,7 @@ const MyBookings = () => {
     }
 
     if (error) {
-        return <p className="text-danger">Error: {error}</p>;
+        return <ErrorBox message={error} />;
     }
 
     return (
