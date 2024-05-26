@@ -17,6 +17,7 @@ import ManagerVenueDetails from '../Manager/VenueDetails';
 import CustomerVenueDetails from '../Customer/VenueDetails';
 import CreateVenueSuccess from '../Manager/CreateVenueSuccess';
 import AboutPage from '../../pages/About'
+
 const App = () => {
   return (
       <div><Layout>
