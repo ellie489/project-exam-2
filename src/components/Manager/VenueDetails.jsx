@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { fetchVenueById } from '../../services/api/venues';
-import { Card, Container, Row, Col } from 'react-bootstrap';
-import ErrorBox from '../ErrorBox'; // Ensure the path to ErrorBox is correct
+import { Card, Container, Row, Col, Modal } from 'react-bootstrap';
+import ErrorBox from '../ErrorBox'; 
 
 const ManagerVenueDetails = () => {
     const { id } = useParams();
@@ -11,6 +11,8 @@ const ManagerVenueDetails = () => {
     const [venue, setVenue] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [modalShow, setModalShow] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         const loadVenue = async () => {
@@ -35,12 +37,23 @@ const ManagerVenueDetails = () => {
         return <ErrorBox message={error} />;
     }
 
+    const handleImageClick = (image) => {
+        setSelectedImage(image);
+        setModalShow(true);
+    };
+
     return (
         <Container className="venue-details">
             {venue && (
                 <Card className="my-4 mx-auto" style={{ maxWidth: '800px' }}>
                     {venue.media && venue.media.length > 0 && (
-                        <Card.Img variant="top" src={venue.media[0].url} alt={venue.media[0].alt} />
+                        <Card.Img
+                            variant="top"
+                            src={venue.media[0].url}
+                            alt={venue.media[0].alt}
+                            onClick={() => handleImageClick(venue.media[0].url)}
+                            style={{ cursor: 'pointer' }}
+                        />
                     )}
                     <Card.Body>
                         <Card.Title>{venue.name}</Card.Title>
@@ -75,6 +88,12 @@ const ManagerVenueDetails = () => {
             ) : (
                 <p>No bookings for this venue.</p>
             )}
+
+            <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
+                <Modal.Body>
+                    <img src={selectedImage} alt="Full Size" className="img-fluid" />
+                </Modal.Body>
+            </Modal>
         </Container>
     );
 };
