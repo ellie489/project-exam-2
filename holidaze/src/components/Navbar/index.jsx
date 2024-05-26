@@ -1,25 +1,24 @@
 import React from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import LoggedOutNavbar from './NavbarLoggedOut';
-import NavbarCustomer from '../Customer/NavbarCustomer';
-import NavbarManager from '../Manager/NavbarManager';
+import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const MyNavbar = () => {
-  const { user, logout } = useAuth();
+const MyNavbar = ({ handleNavLinkClick }) => (
+  <Nav className="ms-auto">
+    <Nav.Item>
+      <Nav.Link as={Link} to="/my-venues" onClick={() => handleNavLinkClick('/my-venues')}>My Venues</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link as={Link} to="/profile" onClick={() => handleNavLinkClick('/profile')}>My Profile</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link as={Link} to="/login-or-register" onClick={() => handleNavLinkClick('/login-or-register')}>Log Out</Nav.Link>
+    </Nav.Item>
+  </Nav>
+);
 
-  const handleLogout = () => {
-    logout();
-  };
-
-  if (!user) {
-    return <LoggedOutNavbar />;
-  }
-
-  if (user.venueManager) {
-    return <NavbarManager handleLogout={handleLogout} />;
-  }
-
-  return <NavbarCustomer handleLogout={handleLogout} />;
+MyNavbar.propTypes = {
+  handleNavLinkClick: PropTypes.func.isRequired,
 };
 
 export default MyNavbar;

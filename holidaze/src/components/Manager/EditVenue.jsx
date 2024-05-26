@@ -120,7 +120,7 @@ const EditVenue = () => {
             await updateVenue(id, venueDataToSend);
             setSuccess('Venue updated successfully!');
             setError(null);
-            navigate(`/venues/${id}`);
+            navigate(`/venues/manager/${id}`);
         } catch (error) {
             setError(error.message);
             setSuccess(null);
