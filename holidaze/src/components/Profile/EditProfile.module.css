@@ -1,0 +1,31 @@
+.formContainer {
+  margin-top: 20px;
+  padding: 2rem;
+  border: 1px solid #208fbc;
+  border-radius: 5px;
+  background-color: rgba(134, 190, 183, 0.2);
+  max-width: 800px;
+  margin: auto;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.inputField,
+.inputTextarea {
+  height: 45px;
+  border-radius: 8px;
+  padding: 0 12px;
+  border: 1px solid #208fbc;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+.inputTextarea {
+  height: 150px;
+}
+.inputField:focus {
+  outline: none;
+  border: 2px solid #208fbc;
+}

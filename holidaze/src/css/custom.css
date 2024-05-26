@@ -11945,6 +11945,14 @@ body {
   line-height: 1.6;
 }
 
+.navbar-toggler {
+  border-color: white;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
 .navbar-custom {
   background-color: #2F4296 !important;
 }
@@ -11955,25 +11963,31 @@ body {
   color: #6c757d !important;
 }
 
+.navbar {
+  z-index: 1050;
+}
+
 .button {
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   border: none;
   cursor: pointer;
   display: inline-block;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.5;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
   user-select: none;
-  width: 100%;
+  width: 350px;
+  max-width: 100%;
 }
 .button.small {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
+  width: 160px;
 }
 .button.large {
-  padding: 0.5rem 1rem;
+  padding: 1.2rem 1rem;
   font-size: 1.25rem;
 }
 .button.primary.blue {
@@ -11998,28 +12012,31 @@ body {
   background-color: #002e2e;
 }
 .button.secondary.blue {
-  background-color: #acb7e5;
+  background-color: white;
   color: #2F4296;
-  border: 1px solid #2F4296;
+  border: 3px solid #2F4296;
 }
 .button.secondary.blue:hover {
-  background-color: #99a6df;
+  background-color: white;
+  color: #3b53bd;
 }
 .button.secondary.red {
   background-color: white;
   color: #FD6358;
-  border: 1px solid #FD6358;
+  border: 3px solid #FD6358;
 }
 .button.secondary.red:hover {
   background-color: white;
+  color: #fe928a;
 }
 .button.secondary.green {
-  background-color: #2effff;
+  background-color: white;
   color: #006161;
-  border: 1px solid #006161;
+  border: 3px solid #006161;
 }
 .button.secondary.green:hover {
-  background-color: #15ffff;
+  background-color: white;
+  color: #009494;
 }
 
 .link-button {
@@ -12105,13 +12122,6 @@ textarea:focus {
   border: 2px solid #208FBC;
 }
 
-button[type=submit] {
-  height: 45px;
-  border-radius: 8px;
-  padding: 0 20px;
-  font-size: 1rem;
-}
-
 .form-group {
   margin-bottom: 1rem;
 }
@@ -12137,6 +12147,45 @@ button[type=submit] {
   width: 100%;
   max-width: 350px;
   background: transparent;
+}
+
+.guestsInputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.guestsButton {
+  color: white;
+  height: 45px;
+  width: 45px;
+  background-color: #006161;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.guestsButton:hover {
+  background-color: #003131;
+}
+
+.guestsInput {
+  height: 45px;
+  width: 60px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 0 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 /*# sourceMappingURL=custom.css.map */

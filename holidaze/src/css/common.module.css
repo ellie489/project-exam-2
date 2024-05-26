@@ -1,0 +1,23 @@
+.commonContainer {
+  margin-top: 20px;
+  padding: 30px 30px 60px 30px;
+  border: 1px solid #208fbc;
+  border-radius: 5px;
+  background-color: rgba(134, 190, 183, 0.2);
+}
+
+.commonCard {
+  background-color: rgba(134, 190, 183, 0.2) !important;
+  border: 1px solid #208fbc !important;
+  border-radius: 5px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.commonTransparentContainer {
+  background-color: transparent;
+  padding: 30px 30px 60px 30px;
+  border: none;
+  box-shadow: none;
+}
+
+/*# sourceMappingURL=common.module.css.map */
