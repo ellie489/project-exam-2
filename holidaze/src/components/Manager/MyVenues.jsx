@@ -65,7 +65,7 @@ const MyVenues = () => {
                 <ul>
                     {venues.map((venue) => (
                         <li key={venue.id}>
-                            <Link to={`/venues/manager/${venue.id}`}>
+                                   <Link to={`/venues/manager/${venue.id}`}>
                                 <h3>{venue.name}</h3>
                                 {venue.media && venue.media.length > 0 && (
                                     <img src={venue.media[0].url} alt={venue.media[0].alt} />

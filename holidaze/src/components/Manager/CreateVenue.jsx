@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { createVenue } from '../../services/api/venues';
 import 'leaflet/dist/leaflet.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import styles from './Form.module.css';
 
 const CreateVenue = () => {
     const [venueData, setVenueData] = useState({
@@ -118,7 +121,6 @@ const CreateVenue = () => {
             return;
         }
 
-   
         const venueDataToSend = {
             ...venueData,
             price: Number(venueData.price),
@@ -129,7 +131,7 @@ const CreateVenue = () => {
             const response = await createVenue(venueDataToSend);
             setSuccess('Venue created successfully!');
             setErrors({});
-            navigate(`/venues/${response.data.id}`);
+            navigate(`/create-venue-success/${response.data.id}`);
         } catch (error) {
             setErrors({ form: error.message });
             setSuccess(null);
@@ -137,20 +139,34 @@ const CreateVenue = () => {
     };
 
     const handleCancel = () => {
-        navigate(-1); 
+        navigate(-1);
+    };
+
+    const incrementGuests = () => {
+        setVenueData((prevData) => ({
+            ...prevData,
+            maxGuests: prevData.maxGuests + 1,
+        }));
+    };
+
+    const decrementGuests = () => {
+        setVenueData((prevData) => ({
+            ...prevData,
+            maxGuests: Math.max(prevData.maxGuests - 1, 1),
+        }));
     };
 
     return (
-        <div className="create-venue-form">
+        <div className={styles.formBox}>
             <h2>Create a New Venue</h2>
             {errors.form && <p className="text-danger">Error: {errors.form}</p>}
             {success && <p className="text-success">{success}</p>}
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Name</label>
                     <input
                         type="text"
-                        className="form-control"
+                        className={styles.inputField}
                         name="name"
                         value={venueData.name}
                         onChange={handleChange}
@@ -158,10 +174,10 @@ const CreateVenue = () => {
                     />
                     {errors.name && <p className="text-danger">{errors.name}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Description</label>
                     <textarea
-                        className="form-control"
+                        className={styles.inputField}
                         name="description"
                         value={venueData.description}
                         onChange={handleChange}
@@ -169,11 +185,11 @@ const CreateVenue = () => {
                     ></textarea>
                     {errors.description && <p className="text-danger">{errors.description}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Price</label>
                     <input
                         type="number"
-                        className="form-control"
+                        className={styles.inputField}
                         name="price"
                         value={venueData.price}
                         onChange={handleChange}
@@ -181,25 +197,41 @@ const CreateVenue = () => {
                     />
                     {errors.price && <p className="text-danger">{errors.price}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Max Guests</label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        name="maxGuests"
-                        value={venueData.maxGuests}
-                        onChange={handleChange}
-                        required
-                    />
+                    <div className={styles.guestsInputContainer}>
+                        <button
+                            type="button"
+                            className={styles.guestsButton}
+                            onClick={decrementGuests}
+                        >
+                            <FontAwesomeIcon icon={faMinus} />
+                        </button>
+                        <input
+                            type="number"
+                            className={styles.guestsInput}
+                            name="maxGuests"
+                            value={venueData.maxGuests}
+                            onChange={handleChange}
+                            min="1"
+                        />
+                        <button
+                            type="button"
+                            className={styles.guestsButton}
+                            onClick={incrementGuests}
+                        >
+                            <FontAwesomeIcon icon={faPlus} />
+                        </button>
+                    </div>
                     {errors.maxGuests && <p className="text-danger">{errors.maxGuests}</p>}
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Media</label>
                     {venueData.media.map((media, index) => (
-                        <div key={index} className="media-input-group">
+                        <div key={index} className={styles.mediaInputGroup}>
                             <input
                                 type="url"
-                                className="form-control"
+                                className={styles.inputField}
                                 name={`media.${index}.url`}
                                 value={media.url}
                                 onChange={handleChange}
@@ -207,7 +239,7 @@ const CreateVenue = () => {
                             />
                             <input
                                 type="text"
-                                className="form-control"
+                                className={styles.inputField}
                                 name={`media.${index}.alt`}
                                 value={media.alt}
                                 onChange={handleChange}
@@ -230,7 +262,7 @@ const CreateVenue = () => {
                         Add More
                     </button>
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Meta</label>
                     <div className="form-check">
                         <input
@@ -273,11 +305,11 @@ const CreateVenue = () => {
                         <label className="form-check-label">Pets</label>
                     </div>
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Location</label>
                     <input
                         type="text"
-                        className="form-control"
+                        className={styles.inputField}
                         name="location.address"
                         value={venueData.location.address}
                         onChange={handleChange}
@@ -285,7 +317,7 @@ const CreateVenue = () => {
                     />
                     <input
                         type="text"
-                        className="form-control"
+                        className={styles.inputField}
                         name="location.city"
                         value={venueData.location.city}
                         onChange={handleChange}
@@ -293,7 +325,7 @@ const CreateVenue = () => {
                     />
                     <input
                         type="text"
-                        className="form-control"
+                        className={styles.inputField}
                         name="location.zip"
                         value={venueData.location.zip}
                         onChange={handleChange}
@@ -301,7 +333,7 @@ const CreateVenue = () => {
                     />
                     <input
                         type="text"
-                        className="form-control"
+                        className={styles.inputField}
                         name="location.country"
                         value={venueData.location.country}
                         onChange={handleChange}
@@ -309,14 +341,14 @@ const CreateVenue = () => {
                     />
                     <input
                         type="text"
-                        className="form-control"
+                        className={styles.inputField}
                         name="location.continent"
                         value={venueData.location.continent}
                         onChange={handleChange}
                         placeholder="Continent"
                     />
                 </div>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label>Map Location</label>
                     <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '400px', width: '100%' }}>
                         <TileLayer
@@ -329,7 +361,7 @@ const CreateVenue = () => {
                         )}
                     </MapContainer>
                 </div>
-                <button type="submit" className="btn btn-primary">Create Venue</button>
+                <button type="submit" className={`${styles.submitButton} button primary green large`}>Create Venue</button>
                 <button type="button" className="btn btn-secondary" onClick={handleCancel}>
                     Cancel
                 </button>
