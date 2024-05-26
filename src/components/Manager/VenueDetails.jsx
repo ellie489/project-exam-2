@@ -64,12 +64,12 @@ const ManagerVenueDetails = () => {
                                 />
                             )}
                             <div className="card-body">
-                                <div className="card-title">{venue.name}</div>
+                                <div className="card-title h2">{venue.name}</div>
                                 <div className="card-text">
-                                    <div>{venue.description}</div>
-                                    <div>Price: ${venue.price}</div>
-                                    <div>Max Guests: {venue.maxGuests}</div>
-                                    <div>Location: {venue.location.city}, {venue.location.country}</div>
+                                    <div><strong>{venue.description}</strong></div>
+                                    <div><strong>Price: ${venue.price}</strong></div>
+                                    <div><strong>Max Guests: </strong>{venue.maxGuests}</div>
+                                    <div><strong>Location: </strong>{venue.location.city}, {venue.location.country}</div>
                                 </div>
                             </div>
                         </div>
@@ -85,10 +85,10 @@ const ManagerVenueDetails = () => {
                                         <div className="card-body">
                                             <div className="card-title">Booking ID: {booking.id}</div>
                                             <div className="card-text">
-                                                <div>From: {new Date(booking.dateFrom).toLocaleDateString()}</div>
-                                                <div>To: {new Date(booking.dateTo).toLocaleDateString()}</div>
+                                                <div><strong>From: {new Date(booking.dateFrom).toLocaleDateString()}</strong></div>
+                                                <div><strong>To: {new Date(booking.dateTo).toLocaleDateString()}</strong></div>
                                                 <div>Guests: {booking.guests}</div>
-                                                <div>Customer: {booking.customer.name}</div>
+                                                <div><strong>Customer: {booking.customer.name}</strong></div>
                                             </div>
                                         </div>
                                     </div>

@@ -12,11 +12,13 @@
   height: auto;
   max-height: 800px;
   max-width: 1200px;
+  border-radius: 8px;
 }
 .carouselItem img {
   max-height: 500px;
   object-fit: cover;
   width: 100%;
+  border-radius: 8px;
 }
 
 .venueDetailsContainer {
