@@ -124,7 +124,7 @@ const CustomerVenueDetails = () => {
                 <BookingForm venueId={id} />
               </Col>
             </Row>
-            {hasCoordinates && (
+            {hasCoordinates ? (
               <Row className="mt-4">
                 <Col>
                   <div className="map-container">
@@ -142,6 +142,8 @@ const CustomerVenueDetails = () => {
                   </div>
                 </Col>
               </Row>
+            ) : (
+              <p>No map available for this venue</p>
             )}
           </>
         )}
