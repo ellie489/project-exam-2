@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { deleteVenue } from '../../services/api/venues';
 import { fetchManagerVenues } from '../../services/api/profiles';
-import { Card, Button, Row, Col, Container } from 'react-bootstrap';
+import { Button, Row, Col, Container } from 'react-bootstrap';
 import ErrorBox from '../ErrorBox';
 
 const MyVenues = () => {
@@ -57,34 +57,40 @@ const MyVenues = () => {
     }
 
     return (
-        <Container className="my-venues">
-            <h2>My Venues</h2>
-            {success && <p className="text-success">{success}</p>}
-            <Link to="/create-venue" className="btn btn-primary mb-3">Create New Venue</Link>
+        <Container className="my-5">
+            <h2 className="text-center mb-4">My Venues</h2>
+            {success && <p className="text-success text-center">{success}</p>}
+            <div className="d-flex justify-content-center mb-4">
+                <Link to="/create-venue" className="button large primary green">Create New Venue</Link>
+            </div>
             {venues.length === 0 ? (
-                <p>No venues found.</p>
+                <p className="text-center">No venues found.</p>
             ) : (
                 <Row className="justify-content-center">
                     {venues.map((venue) => (
-                        <Col md={10} lg={6} key={venue.id} className="mb-4">
-                            <Card className="h-100">
-                                <Link to={`/venues/manager/${venue.id}`} className="text-decoration-none">
+                        <Col xs={12} sm={6} md={6} lg={4} key={venue.id} className="mb-4 d-flex justify-content-center">
+                            <div className="custom-card h-100">
+                                <Link to={`/venues/manager/${venue.id}`} className="custom-card-link">
                                     {venue.media && venue.media.length > 0 && (
-                                        <Card.Img variant="top" src={venue.media[0].url} alt={venue.media[0].alt} />
+                                        <img 
+                                            src={venue.media[0].url} 
+                                            alt={venue.media[0].alt} 
+                                            className="custom-card-img img-fluid rounded" 
+                                        />
                                     )}
-                                    <Card.Body>
-                                        <Card.Title>{venue.name}</Card.Title>
-                                        <Card.Text>
-                                            <p>Price: ${venue.price}</p>
+                                    <div className="card-body">
+                                        <div className="card-title">{venue.name}</div>
+                                        <div className="card-text">
+                                            <div>Price: ${venue.price}</div>
                                             <p>Location: {venue.location.city}, {venue.location.country}</p>
-                                        </Card.Text>
-                                    </Card.Body>
+                                        </div>
+                                    </div>
                                 </Link>
-                                <Card.Footer className="d-flex justify-content-between">
-                                    <Link to={`/edit-venue/${venue.id}`} className="btn btn-secondary">Edit</Link>
-                                    <Button variant="danger" onClick={() => handleDelete(venue.id)}>Delete</Button>
-                                </Card.Footer>
-                            </Card>
+                                <div className="d-flex justify-content-between p-1">
+                                    <Link to={`/edit-venue/${venue.id}`} className="button small primary blue py-2 mx-1">Edit</Link>
+                                    <Button className="button small primary red py-2 mx-1" onClick={() => handleDelete(venue.id)}>Delete</Button>
+                                </div>
+                            </div>
                         </Col>
                     ))}
                 </Row>

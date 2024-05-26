@@ -211,7 +211,7 @@ const EditVenue = () => {
                             />
                             <button
                                 type="button"
-                                className="btn btn-danger"
+                                className="button small primary red py-2 mt-2"
                                 onClick={() => handleRemoveMedia(index)}
                             >
                                 Remove
@@ -220,7 +220,7 @@ const EditVenue = () => {
                     ))}
                     <button
                         type="button"
-                        className="btn btn-secondary"
+                        className="button small primary green py-2 mt-2"
                         onClick={handleAddMedia}
                     >
                         Add More

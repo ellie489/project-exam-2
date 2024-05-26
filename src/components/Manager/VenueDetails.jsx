@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { fetchVenueById } from '../../services/api/venues';
-import { Card, Container, Row, Col, Modal } from 'react-bootstrap';
-import ErrorBox from '../ErrorBox'; 
+import { Container, Row, Col, Modal } from 'react-bootstrap';
+import ErrorBox from '../ErrorBox';
 
 const ManagerVenueDetails = () => {
     const { id } = useParams();
@@ -45,43 +45,43 @@ const ManagerVenueDetails = () => {
     return (
         <Container className="venue-details">
             {venue && (
-                <Card className="my-4 mx-auto" style={{ maxWidth: '800px' }}>
+                <div className="custom-card my-4 mx-auto" style={{ maxWidth: '800px' }}>
                     {venue.media && venue.media.length > 0 && (
-                        <Card.Img
-                            variant="top"
+                        <img
                             src={venue.media[0].url}
                             alt={venue.media[0].alt}
                             onClick={() => handleImageClick(venue.media[0].url)}
+                            className="custom-card-img img-fluid rounded"
                             style={{ cursor: 'pointer' }}
                         />
                     )}
-                    <Card.Body>
-                        <Card.Title>{venue.name}</Card.Title>
-                        <Card.Text>
-                            <p>{venue.description}</p>
-                            <p>Price: ${venue.price}</p>
-                            <p>Max Guests: {venue.maxGuests}</p>
-                            <p>Location: {venue.location.city}, {venue.location.country}</p>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                    <div className="card-body">
+                        <div className="card-title">{venue.name}</div>
+                        <div className="card-text">
+                            <div>{venue.description}</div>
+                            <div>Price: ${venue.price}</div>
+                            <div>Max Guests: {venue.maxGuests}</div>
+                            <div>Location: {venue.location.city}, {venue.location.country}</div>
+                        </div>
+                    </div>
+                </div>
             )}
             <h3>Bookings</h3>
             {venue.bookings && venue.bookings.length > 0 ? (
                 <Row className="justify-content-center">
                     {venue.bookings.map((booking) => (
                         <Col md={10} lg={6} key={booking.id} className="mb-4">
-                            <Card className="h-100">
-                                <Card.Body>
-                                    <Card.Title>Booking ID: {booking.id}</Card.Title>
-                                    <Card.Text>
-                                        <p>From: {new Date(booking.dateFrom).toLocaleDateString()}</p>
-                                        <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
-                                        <p>Guests: {booking.guests}</p>
-                                        <p>Customer: {booking.customer.name}</p>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
+                            <div className="custom-card h-100">
+                                <div className="card-body">
+                                    <div className="card-title">Booking ID: {booking.id}</div>
+                                    <div className="card-text">
+                                        <div>From: {new Date(booking.dateFrom).toLocaleDateString()}</div>
+                                        <div>To: {new Date(booking.dateTo).toLocaleDateString()}</div>
+                                        <div>Guests: {booking.guests}</div>
+                                        <div>Customer: {booking.customer.name}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </Col>
                     ))}
                 </Row>

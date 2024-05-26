@@ -62,10 +62,10 @@ const MyBookings = () => {
                                     </Col>
                                     <Col xs={12} md={8}>
                                         <div>
-                                            <p><strong>Booking ID:</strong> {booking.id}</p>
-                                            <p><strong>From:</strong> {new Date(booking.dateFrom).toLocaleDateString()}</p>
-                                            <p><strong>To:</strong> {new Date(booking.dateTo).toLocaleDateString()}</p>
-                                            <p><strong>Guests:</strong> {booking.guests}</p>
+                                            <div><strong>Booking ID:</strong> {booking.id}</div>
+                                            <div><strong>From:</strong> {new Date(booking.dateFrom).toLocaleDateString()}</div>
+                                            <div><strong>To:</strong> {new Date(booking.dateTo).toLocaleDateString()}</div>
+                                            <div><strong>Guests:</strong> {booking.guests}</div>
                                         </div>
                                     </Col>
                                 </Row>

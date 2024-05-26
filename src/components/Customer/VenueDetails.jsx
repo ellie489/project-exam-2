@@ -102,12 +102,12 @@ const CustomerVenueDetails = () => {
               <Col lg={6}>
                 <div className="venue-details">
                   <h1>{venue.name}</h1>
-                  <p><strong>Description:</strong> {venue.description}</p>
-                  <p><strong>Price:</strong> ${venue.price}</p>
-                  <p><strong>Max Guests:</strong> {venue.maxGuests}</p>
-                  <p><strong>Rating:</strong> {venue.rating}</p>
-                  <p><strong>Created:</strong> {new Date(venue.created).toLocaleDateString()}</p>
-                  <p><strong>Updated:</strong> {new Date(venue.updated).toLocaleDateString()}</p>
+                  <div><strong>Description:</strong> {venue.description}</div>
+                  <div><strong>Price:</strong> ${venue.price}</div>
+                  <div><strong>Max Guests:</strong> {venue.maxGuests}</div>
+                  <div><strong>Rating:</strong> {venue.rating}</div>
+                  <div><strong>Created:</strong> {new Date(venue.created).toLocaleDateString()}</div>
+                  <div><strong>Updated:</strong> {new Date(venue.updated).toLocaleDateString()}</div>
                   <div>
                     <strong>Meta:</strong>
                     <ul className={styles.metaList}>
