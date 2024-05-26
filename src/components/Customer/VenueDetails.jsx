@@ -4,7 +4,7 @@ import { fetchVenueById } from '../../services/api/venues';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Carousel, Container, Row, Col, Modal } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Modal, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BookingForm from '../Booking/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -47,10 +47,16 @@ const CustomerVenueDetails = () => {
   
       loadVenue();
     }, [id]);
-  
+
     if (loading) {
-      return <p>Loading venue details...</p>;
-    }
+      return (
+          <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+              <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+              </Spinner>
+          </div>
+      );
+  }
   
     if (error) {
       return <ErrorBox message={error} />;
