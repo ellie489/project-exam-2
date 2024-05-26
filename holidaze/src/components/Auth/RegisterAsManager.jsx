@@ -3,74 +3,84 @@ import { useNavigate } from 'react-router-dom';
 import { registerUser, loginUser } from '../../services/api/auth';
 
 const RegisterAsManager = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
+  const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRegisterData({ ...registerData, [name]: value });
+  };
 
-        const user = {
-            name: username,
-            email,
-            password,
-            venueManager: true
-        };
-        try {
-            await registerUser(user);
-            const loginResponse = await loginUser({ email, password });
-            localStorage.setItem('username', loginResponse.data.name); 
-            localStorage.setItem('token', loginResponse.data.accessToken); 
-            localStorage.setItem('apiKey', loginResponse.apiKey); 
-            localStorage.setItem('venueManager', loginResponse.data.venueManager);
-            navigate('/manager-dashboard');
-            console.log(loginResponse)
-        } catch (error) {
-            setError(error.message);
-        }
-    };
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+    if (!registerData.name) {
+      setError('Name is required');
+      return;
+    }
+    if (!registerData.email) {
+      setError('Email is required');
+      return;
+    }
+    if (!registerData.password) {
+      setError('Password is required');
+      return;
+    }
+    try {
+      await registerUser({ ...registerData, isManager: true });
+      const loginResponse = await loginUser({ email: registerData.email, password: registerData.password });
+      navigate('/manager-dashboard');
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
-    return (
-        <div className="register-form">
-            <h2>Register as Manager</h2>
-            {error && <p className="text-danger">Error: {error}</p>}
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Username</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary">Register</button>
-            </form>
-        </div>
-    );
+  const handleBack = () => {
+    navigate(-1); 
+  };
+
+  return (
+    <div className="form-container">
+      <div className="form-box">
+        <h2>Register as Manager</h2>
+        {error && <p className="text-danger">{error}</p>}
+        <form onSubmit={handleRegisterSubmit}>
+          <div className="form-group">
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={registerData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={registerData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={registerData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit" className="button large primary blue mb-4">Register</button>
+        </form>
+        <button onClick={handleBack} className="button secondary mb-4">Back</button>
+      </div>
+    </div>
+  );
 };
 
 export default RegisterAsManager;

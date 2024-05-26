@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { loginUser, registerUser } from '../../services/api/auth';
-
+import styles from './index.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
 const LoginOrRegister = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
@@ -33,7 +35,7 @@ const LoginOrRegister = () => {
     try {
       const userData = await loginUser(credentials);
       login(userData);
-      
+      navigate('/customer-dashboard');
     } catch (error) {
       setError(error.message);
     }
@@ -57,94 +59,104 @@ const LoginOrRegister = () => {
       await registerUser(registerData);
       const loginResponse = await loginUser({ email: registerData.email, password: registerData.password });
       login(loginResponse);
-
+      navigate('/customer-dashboard');
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const toggleForm = () => {
+  const toggleForm = (e) => {
+    e.preventDefault();
     setIsRegistering(!isRegistering);
     setError(null);
     if (!isRegistering) {
       setRegisterData({ ...registerData, email: credentials.email });
     }
   };
-
   return (
-    <div>
-      <h2>{isRegistering ? 'Register' : 'Login'}</h2>
-      {error && <p>{error}</p>}
-      {isRegistering ? (
-        <form onSubmit={handleRegisterSubmit}>
-          <div>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={registerData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={registerData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={registerData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">Register</button>
-        </form>
-      ) : (
-        <form onSubmit={handleLoginSubmit}>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={credentials.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">Login</button>
-        </form>
-      )}
-      <div>
+    <div className="form-container">
+      <div className="form-box">
+        <h2>{isRegistering ? 'Register' : 'Login'}</h2>
+        {error && <p className="text-danger">{error}</p>}
         {isRegistering ? (
-          <p>
-            Already have an account? <button onClick={toggleForm}>Login here</button>
-          </p>
+          <form onSubmit={handleRegisterSubmit}>
+            <div className="form-group">
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={registerData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={registerData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={registerData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit" className="button large primary blue mb-4">Register</button>
+          </form>
         ) : (
-          <p>
-            Don`t have an account? <button onClick={toggleForm}>Register here</button>
-          </p>
+          <form onSubmit={handleLoginSubmit}>
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={credentials.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit" className="button large primary blue mb-4">Login</button>
+          </form>
         )}
-      </div>
+        <div>   </div>
+          {isRegistering ? (
+            <p>
+              Already have an account? <button className="link-button" onClick={toggleForm}>Login here</button>
+            </p>
+          ) : (
+            <p>
+              Don’t have an account? <button className="link-button" onClick={toggleForm}>Register here</button>
+            </p>
+          )}
+        </div>
+        {!isRegistering && (
+          <div className={styles.listPropertyBox}>
+            <h3 className='mb-3'>List your property <FontAwesomeIcon icon={faHouse} style={{color: "#208FBC"}} /></h3>
+            <p>
+              Get started by creating your account <Link to="/register-manager" className={styles.link}>here</Link>.
+            </p>
+          </div>
+        )}
+   
     </div>
   );
 };
