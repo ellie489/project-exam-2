@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../../contexts/AuthContext';
 import '../../scss/calendar.scss';
 import styles from './Form.module.css';
 import ErrorBox from '../ErrorBox';
 
 const BookingForm = ({ venueId }) => {
+    const { user } = useAuth();
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);
     const [guests, setGuests] = useState('2');
     const [bookedDates, setBookedDates] = useState([]);
@@ -44,6 +46,12 @@ const BookingForm = ({ venueId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!user) {
+            navigate('/login-or-register');
+            return;
+        }
+
         try {
             const bookingData = {
                 dateFrom: new Date(dateRange[0]).toISOString(),

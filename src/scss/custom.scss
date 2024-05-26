@@ -1,3 +1,4 @@
+
 @import './variables';
 @import './calendar.scss';
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
@@ -51,9 +52,9 @@ body {
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  display: inline-flex; /* Change to inline-flex */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  display: inline-flex; 
+  justify-content: center; 
+  align-items: center; 
   font-weight: 500;
   line-height: 1.5;
   text-align: center;
@@ -62,6 +63,7 @@ body {
   user-select: none;
   width: 350px;
   max-width: 100%;
+  box-sizing: border-box;
 
   &.small {
     padding: $btn-small-padding;
@@ -86,7 +88,7 @@ body {
 
     &.red {
       background-color: $red;
-      color: #fff;
+      color: #000000;
 
       &:hover {
         background-color: darken($red, 10%);
@@ -117,7 +119,7 @@ body {
 
     &.red {
       background-color: white;
-      color: $red;
+      color: #000;
       border: 3px solid $red;
 
       &:hover {

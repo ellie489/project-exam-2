@@ -6,6 +6,10 @@
   background-color: rgba(134, 190, 183, 0.2);
   max-width: 600px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
 }
 
 .formGroup {

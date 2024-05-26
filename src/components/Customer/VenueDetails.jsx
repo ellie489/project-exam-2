@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchVenueById } from '../../services/api/venues';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';  
+import { Carousel, Container, Row, Col, Modal } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import BookingForm from '../Booking/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import ErrorBox from '../ErrorBox'; 
+import ErrorBox from '../ErrorBox';
 import styles from './VenueDetails.module.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -30,6 +30,8 @@ const CustomerVenueDetails = () => {
     const [venue, setVenue] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [modalShow, setModalShow] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
   
     useEffect(() => {
       const loadVenue = async () => {
@@ -56,6 +58,11 @@ const CustomerVenueDetails = () => {
   
     const hasCoordinates = venue && venue.location.lat && venue.location.lng;
   
+    const handleImageClick = (image) => {
+        setSelectedImage(image);
+        setModalShow(true);
+    };
+  
     return (
       <Container>
         {venue && (
@@ -71,6 +78,8 @@ const CustomerVenueDetails = () => {
                             className="d-block w-100"
                             src={image.url}
                             alt={image.alt || `Image ${index + 1}`}
+                            onClick={() => handleImageClick(image.url)}
+                            style={{ cursor: 'pointer' }}
                           />
                         </Carousel.Item>
                       ))}
@@ -80,6 +89,8 @@ const CustomerVenueDetails = () => {
                       className="d-block w-100"
                       src={venue.media[0].url}
                       alt={venue.media[0].alt || 'Venue Image'}
+                      onClick={() => handleImageClick(venue.media[0].url)}
+                      style={{ cursor: 'pointer' }}
                     />
                   )
                 ) : (
@@ -147,6 +158,12 @@ const CustomerVenueDetails = () => {
             )}
           </>
         )}
+
+        <Modal show={modalShow} onHide={() => setModalShow(false)} size="lg" centered>
+          <Modal.Body className="p-0">
+            <img src={selectedImage} alt="Full Size" className="w-100" />
+          </Modal.Body>
+        </Modal>
       </Container>
     );
 };
