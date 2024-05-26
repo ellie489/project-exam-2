@@ -1,9 +1,11 @@
 .formBox {
   margin-top: 20px;
   padding: 30px;
-  border: 1px solid #208fbc; 
+  border: 1px solid #208fbc;
   border-radius: 5px;
   background-color: rgba(134, 190, 183, 0.2);
+  max-width: 600px;
+  margin: auto;
 }
 
 .formGroup {
@@ -37,7 +39,7 @@
 }
 
 .submitButton:hover {
-  background-color: #218838; 
+  background-color: #218838;
 }
 
 .calendar {
@@ -70,12 +72,13 @@
 .guestsInputContainer {
   display: flex;
   align-items: center;
+  width: 200px;
 }
 
 .guestsButton {
   color: white;
-  height: 45px;
-  width: 45px;
+  height: 3rem;
+  width: 4rem;
   background-color: #006161;
   border: none;
   cursor: pointer;
