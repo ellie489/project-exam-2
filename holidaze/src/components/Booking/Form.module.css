@@ -1,0 +1,101 @@
+.formBox {
+  margin-top: 20px;
+  padding: 30px;
+  border: 1px solid #208fbc; 
+  border-radius: 5px;
+  background-color: rgba(134, 190, 183, 0.2);
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.inputField {
+  height: 45px;
+  border-radius: 8px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.inputField:focus {
+  outline: none;
+  border: 2px solid #208fbc;
+}
+
+.submitButton {
+  height: 45px;
+  border-radius: 8px;
+  padding: 0 20px;
+  font-size: 1rem;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #218838; 
+}
+
+.calendar {
+  display: none;
+  border-radius: 8px;
+  border: none;
+}
+
+.calendarVisible {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  border: none;
+  padding: 30px 10px 10px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000;
+}
+
+.guestsInputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.guestsButton {
+  color: white;
+  height: 45px;
+  width: 45px;
+  background-color: #006161;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.guestsButton:hover {
+  background-color: #003131;
+}
+
+.guestsInput {
+  height: 45px;
+  width: 60px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 0 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}

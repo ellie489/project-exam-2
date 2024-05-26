@@ -1,0 +1,16 @@
+.listPropertyBox {
+  margin-top: 20px;
+  padding: 30px 30px 60px 30px;
+  border: 1px solid #208fbc;
+  border-radius: 5px;
+  background-color: rgba(134, 190, 183, 0.2);
+}
+.link {
+  color: #000000;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
+.link:hover {
+  text-decoration: none;
+}

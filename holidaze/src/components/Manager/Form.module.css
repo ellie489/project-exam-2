@@ -1,0 +1,79 @@
+.formBox {
+  margin-top: 20px;
+  padding: 30px;
+  border: 1px solid #208fbc;
+  border-radius: 5px;
+  background-color: rgba(134, 190, 183, 0.2);
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.inputField {
+  height: 45px;
+  border-radius: 8px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.inputField:focus {
+  outline: none;
+  border: 2px solid #208fbc;
+}
+
+.submitButton {
+  height: 45px;
+  border-radius: 8px;
+  padding: 0 20px;
+  font-size: 1rem;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #218838;
+}
+
+.guestsInputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.guestsButton {
+  height: 45px;
+  width: 45px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.guestsButton:hover {
+  background-color: #ccc;
+}
+
+.guestsInput {
+  height: 45px;
+  width: 60px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 0 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.mediaInputGroup {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
