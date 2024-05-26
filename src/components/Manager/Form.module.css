@@ -4,6 +4,8 @@
   border: 1px solid #208fbc;
   border-radius: 5px;
   background-color: rgba(134, 190, 183, 0.2);
+  max-width: 600px;
+  margin: auto;
 }
 
 .formGroup {

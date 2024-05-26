@@ -44,50 +44,56 @@ const ManagerVenueDetails = () => {
 
     return (
         <Container className="venue-details">
-            {venue && (
-                <div className="custom-card my-4 mx-auto" style={{ maxWidth: '800px' }}>
-                    {venue.media && venue.media.length > 0 && (
-                        <img
-                            src={venue.media[0].url}
-                            alt={venue.media[0].alt}
-                            onClick={() => handleImageClick(venue.media[0].url)}
-                            className="custom-card-img img-fluid rounded"
-                            style={{ cursor: 'pointer' }}
-                        />
-                    )}
-                    <div className="card-body">
-                        <div className="card-title">{venue.name}</div>
-                        <div className="card-text">
-                            <div>{venue.description}</div>
-                            <div>Price: ${venue.price}</div>
-                            <div>Max Guests: {venue.maxGuests}</div>
-                            <div>Location: {venue.location.city}, {venue.location.country}</div>
-                        </div>
-                    </div>
-                </div>
-            )}
-            <h3>Bookings</h3>
-            {venue.bookings && venue.bookings.length > 0 ? (
-                <Row className="justify-content-center">
-                    {venue.bookings.map((booking) => (
-                        <Col md={10} lg={6} key={booking.id} className="mb-4">
-                            <div className="custom-card h-100">
-                                <div className="card-body">
-                                    <div className="card-title">Booking ID: {booking.id}</div>
-                                    <div className="card-text">
-                                        <div>From: {new Date(booking.dateFrom).toLocaleDateString()}</div>
-                                        <div>To: {new Date(booking.dateTo).toLocaleDateString()}</div>
-                                        <div>Guests: {booking.guests}</div>
-                                        <div>Customer: {booking.customer.name}</div>
-                                    </div>
+            <Row>
+                {venue && (
+                    <Col xs={12} md={6} className="mb-4">
+                        <div className="custom-card">
+                            {venue.media && venue.media.length > 0 && (
+                                <img
+                                    src={venue.media[0].url}
+                                    alt={venue.media[0].alt}
+                                    onClick={() => handleImageClick(venue.media[0].url)}
+                                    className="custom-card-img img-fluid rounded"
+                                    style={{ cursor: 'pointer' }}
+                                />
+                            )}
+                            <div className="card-body">
+                                <div className="card-title">{venue.name}</div>
+                                <div className="card-text">
+                                    <div>{venue.description}</div>
+                                    <div>Price: ${venue.price}</div>
+                                    <div>Max Guests: {venue.maxGuests}</div>
+                                    <div>Location: {venue.location.city}, {venue.location.country}</div>
                                 </div>
                             </div>
-                        </Col>
-                    ))}
-                </Row>
-            ) : (
-                <p>No bookings for this venue.</p>
-            )}
+                        </div>
+                    </Col>
+                )}
+                <Col xs={12} md={6} className="mb-4">
+                    <h3>Bookings</h3>
+                    {venue.bookings && venue.bookings.length > 0 ? (
+                        <Row className="justify-content-center">
+                            {venue.bookings.map((booking) => (
+                                <Col xs={12} key={booking.id} className="mb-4">
+                                    <div className="custom-card h-100">
+                                        <div className="card-body">
+                                            <div className="card-title">Booking ID: {booking.id}</div>
+                                            <div className="card-text">
+                                                <div>From: {new Date(booking.dateFrom).toLocaleDateString()}</div>
+                                                <div>To: {new Date(booking.dateTo).toLocaleDateString()}</div>
+                                                <div>Guests: {booking.guests}</div>
+                                                <div>Customer: {booking.customer.name}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Col>
+                            ))}
+                        </Row>
+                    ) : (
+                        <p>No bookings for this venue.</p>
+                    )}
+                </Col>
+            </Row>
 
             <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
                 <Modal.Body>

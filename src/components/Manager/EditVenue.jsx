@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { fetchVenueById, updateVenue } from '../../services/api/venues';
 import 'leaflet/dist/leaflet.css';
 import ErrorBox from '../ErrorBox'; 
-
+import styles from './Form.module.css'
 const EditVenue = () => {
     const { id } = useParams();
     const [venueData, setVenueData] = useState(null);
@@ -137,7 +137,7 @@ const EditVenue = () => {
     }
 
     return (
-        <div className="edit-venue-form">
+        <div className={styles.formBox}>
             <h2>Edit Venue</h2>
             {error && <p className="text-danger">Error: {error}</p>}
             {success && <p className="text-success">{success}</p>}
