@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,20 +16,22 @@
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
     "react-calendar": "^5.0.0",
+    "react-datepicker": "^6.9.0",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
-    "sass": "^1.77.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "build-sass": "sass src/scss:dist/css",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run build-sass",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "lint": "eslint src/**/*.jsx"
+    "lint": "eslint src/**/*.jsx",
+    "watch": "sass --watch src/scss:src/css"
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +57,10 @@
     "eslint-plugin-react": "^7.34.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5"
+    "live-server": "^1.2.2",
+    "prettier": "^3.2.5",
+    "sass": "^1.77.2",
+    "webpack": "^5.91.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
