@@ -1,32 +1,6 @@
-@import "../../node_modules/bootstrap/scss/functions";
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&display=swap');
+@import './variables';
 @import './calendar.scss';
-
-$heading-color: #2F4296;
-$heading-font-family: 'Montserrat', sans-serif;
-$body-font-family: 'Poppins', sans-serif;
-$body-text-color: #1E2A59;
-$graphics: #208FBC;
-$h1-font-size: 3rem;
-$h2-font-size: 2rem;
-$h3-font-size: 1.5rem;
-$body-font-size: 1rem;
-$btn-small-padding: 0.25rem 0.5rem;
-$btn-large-padding: 1.2rem 1rem;
-$btn-small-font-size: 0.875rem;
-$btn-large-font-size: 1.25rem;
-$navbar-bg: #2F4296;
-$navbar-dark-color: #ffffff;
-$body-bg: #FFFFFF; 
-$body-color: #212529;
-$blue: #2F4296;
-$red: #FD6358;
-$green:#006161;
-$graphics: #208FBC;
-
-@import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
@@ -43,7 +17,6 @@ h3, .h3 { font-size: $h3-font-size; }
 h4, .h4 { font-size: 1.25rem; }
 h5, .h5 { font-size: 1rem; }
 h6, .h6 { font-size: 0.875rem; }
-
 
 body {
   background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(206, 251, 244, 0.3) 100%);
@@ -234,7 +207,6 @@ body {
   }
 }
 
-
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -259,7 +231,6 @@ textarea {
 .text-danger { color: red; }
 .text-success { color: green; }
 
-
 .form-container {
   display: flex;
   flex-direction: column;
@@ -274,6 +245,7 @@ textarea {
   max-width: 350px;
   background: transparent;
 }
+
 .guestsInputContainer {
   display: flex;
   align-items: center;
@@ -306,6 +278,7 @@ textarea {
   font-size: 1rem;
   box-sizing: border-box;
 }
+
 ul, ol {
   margin: 0;
   padding: 0;
