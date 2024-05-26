@@ -11971,7 +11971,9 @@ body {
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex; /* Change to inline-flex */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
   font-weight: 500;
   line-height: 1.5;
   text-align: center;

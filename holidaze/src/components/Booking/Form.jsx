@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../scss/calendar.scss';
 import styles from './Form.module.css';
+import ErrorBox from '../ErrorBox';
 
 const BookingForm = ({ venueId }) => {
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);
-    const [guests, setGuests] = useState('2'); 
+    const [guests, setGuests] = useState('2');
     const [bookedDates, setBookedDates] = useState([]);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
@@ -74,27 +75,22 @@ const BookingForm = ({ venueId }) => {
     };
 
     const incrementGuests = () => {
-        setGuests(guests + 1);
+        setGuests((prevGuests) => parseInt(prevGuests, 10) + 1);
     };
 
     const decrementGuests = () => {
-        if (guests > 1) {
-            setGuests(guests - 1);
-        }
+        setGuests((prevGuests) => Math.max(parseInt(prevGuests, 10) - 1, 1));
     };
+
     const handleGuestsChange = (e) => {
-        const value = parseInt(e.target.value, 10);
-        if (!isNaN(value) && value > 0) {
-            setGuests(value);
-        } else {
-            setGuests(1); // Set a minimum of 1 guest
-        }
+        const value = e.target.value;
+        setGuests(value === '' ? '' : Math.max(parseInt(value, 10), 1));
     };
 
     return (
         <div className={styles.formBox}>
             <h2>Create a Booking</h2>
-            {error && <p className="text-danger">Error: {error}</p>}
+            {error && <ErrorBox message={error} />}
             {success && <p className="text-success">{success}</p>}
             <form onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
@@ -157,7 +153,6 @@ const BookingForm = ({ venueId }) => {
         </div>
     );
 };
-
 
 BookingForm.propTypes = {
     venueId: PropTypes.string.isRequired,

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { fetchVenueById } from '../../services/api/venues';
 import { Card, Container, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import ErrorBox from '../ErrorBox'; // Ensure the path to ErrorBox is correct
 
 const ManagerVenueDetails = () => {
     const { id } = useParams();
@@ -32,7 +32,7 @@ const ManagerVenueDetails = () => {
     }
 
     if (error) {
-        return <p className="text-danger">Error: {error}</p>;
+        return <ErrorBox message={error} />;
     }
 
     return (

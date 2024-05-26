@@ -4,9 +4,6 @@ import Layout from '../Layout';
 import Homepage from '../../pages/Home';
 import LoginOrRegister from '../Auth/LoginOrRegister';
 import RegisterAsManager from '../Auth/RegisterAsManager';
-import CompleteProfile from '../Profile/EditProfile';
-import CustomerDashboard from '../../pages/CustomerDashboard';
-import ManagerDashboard from '../../pages/ManagerDashboard';
 import NotFound from '../../pages/NotFound';
 import Profile from '../Profile/index';
 import EditProfile from '../Profile/EditProfile';
@@ -27,9 +24,6 @@ const App = () => {
                   <Route path="/" element={<Homepage />} />
                   <Route path="/login-or-register" element={<LoginOrRegister />} />
                   <Route path="/register-manager" element={<RegisterAsManager />} />
-                  <Route path="/complete-profile" element={<CompleteProfile />} />
-                  <Route path="/customer-dashboard" element={<CustomerDashboard />} />
-                  <Route path="/manager-dashboard" element={<ManagerDashboard />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/edit-profile" element={<EditProfile />} />
                   <Route path="/venues/manager/:id" element={<ManagerVenueDetails />} />

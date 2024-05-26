@@ -1,16 +1,21 @@
 import React from 'react';
-import VenuesList from '../components/Venues/VenuesList';
 import { Link } from 'react-router-dom';
-import styles from './home.module.css'
+import VenuesList from '../components/Venues/VenuesList';
+import { useAuth } from '../contexts/AuthContext';
+import styles from './home.module.css';
 
 const Homepage = () => {
+    const { user } = useAuth();
+
     return (
         <div className="homepage">
             <h1 className="h1">Welcome to Holidaze!</h1>
             <h2 className={styles.thinHeader}>Find your new home away from home</h2>
-            <Link to="/login-or-register" className="button large primary green">
-        Sign in to book
-      </Link>
+            {!user && (
+                <Link to="/login-or-register" className="button large primary green">
+                    Sign in to book
+                </Link>
+            )}
             <VenuesList />
         </div>
     );

@@ -19,13 +19,14 @@ export const AuthProvider = ({ children }) => {
     const apiKey = localStorage.getItem('apiKey');
     const venueManager = localStorage.getItem('venueManager') === 'true';
     if (username && token && apiKey) {
-      setUser({ username, token, apiKey, venueManager });
+      setUser({ username, token, apiKey, venueManager, role: venueManager ? 'manager' : 'customer' });
     }
     setLoading(false);
   }, []);
 
   const login = (userData) => {
-    setUser(userData);
+    const user = { ...userData, role: userData.venueManager ? 'manager' : 'customer' };
+    setUser(user);
     localStorage.setItem('username', userData.username);
     localStorage.setItem('token', userData.token);
     localStorage.setItem('apiKey', userData.apiKey);
