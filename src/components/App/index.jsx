@@ -16,12 +16,14 @@ import EditVenue from '../Manager/EditVenue';
 import ManagerVenueDetails from '../Manager/VenueDetails';
 import CustomerVenueDetails from '../Customer/VenueDetails';
 import CreateVenueSuccess from '../Manager/CreateVenueSuccess';
+import AboutPage from '../../pages/About'
 const App = () => {
   return (
       <div><Layout>
           <div className="container mt-3">
               <Routes>
                   <Route path="/" element={<Homepage />} />
+                  <Route path="/about" element={<AboutPage />} /> 
                   <Route path="/login-or-register" element={<LoginOrRegister />} />
                   <Route path="/register-manager" element={<RegisterAsManager />} />
                   <Route path="/profile" element={<Profile />} />

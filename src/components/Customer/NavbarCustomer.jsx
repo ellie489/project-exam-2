@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 
 const CustomerNavbar = ({ handleLogout }) => (
     <Nav className="ms-auto">
+                        <Nav.Item>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
+        </Nav.Item>
         <Nav.Item>
             <Nav.Link as={Link} to="/profile">My Profile</Nav.Link>
         </Nav.Item>
