@@ -4,15 +4,18 @@ import { createBooking } from '../../services/api/bookings';
 import { fetchVenueById } from '../../services/api/venues';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import './Form.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from './Form.module.css';
 
 const BookingForm = ({ venueId }) => {
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);
-    const [guests, setGuests] = useState('');
+    const [guests, setGuests] = useState('2'); 
     const [bookedDates, setBookedDates] = useState([]);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const [calendarVisible, setCalendarVisible] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -70,37 +73,91 @@ const BookingForm = ({ venueId }) => {
         return false;
     };
 
+    const incrementGuests = () => {
+        setGuests(guests + 1);
+    };
+
+    const decrementGuests = () => {
+        if (guests > 1) {
+            setGuests(guests - 1);
+        }
+    };
+    const handleGuestsChange = (e) => {
+        const value = parseInt(e.target.value, 10);
+        if (!isNaN(value) && value > 0) {
+            setGuests(value);
+        } else {
+            setGuests(1); // Set a minimum of 1 guest
+        }
+    };
+
     return (
-        <div className="booking-form">
+        <div className={styles.formBox}>
             <h2>Create a Booking</h2>
             {error && <p className="text-danger">Error: {error}</p>}
             {success && <p className="text-success">{success}</p>}
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="dateRange">Select Dates</label>
-                    <Calendar
-                        onChange={setDateRange}
-                        value={dateRange}
-                        selectRange
-                        tileDisabled={tileDisabled}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="guests">Guests</label>
                     <input
-                        type="number"
-                        id="guests"
-                        className="form-control"
-                        value={guests}
-                        onChange={(e) => setGuests(e.target.value)}
-                        required
+                        type="text"
+                        id="dateRange"
+                        className={styles.inputField}
+                        onFocus={() => setCalendarVisible(true)}
+                        readOnly
+                        value={`${dateRange[0].toLocaleDateString()} - ${dateRange[1].toLocaleDateString()}`}
                     />
+                    {calendarVisible && (
+                        <div className={`${styles.calendar} ${styles.calendarVisible}`}>
+                            <button
+                                type="button"
+                                className={styles.closeButton}
+                                onClick={() => setCalendarVisible(false)}
+                            >
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                            <Calendar
+                                onChange={setDateRange}
+                                value={dateRange}
+                                selectRange
+                                tileDisabled={tileDisabled}
+                            />
+                        </div>
+                    )}
                 </div>
-                <button type="submit" className="btn btn-primary">Create Booking</button>
+                <div className={styles.formGroup}>
+                    <label htmlFor="guests">Guests</label>
+                    <div className={styles.guestsInputContainer}>
+                        <button
+                            type="button"
+                            className={styles.guestsButton}
+                            onClick={decrementGuests}
+                        >
+                            <FontAwesomeIcon icon={faMinus} />
+                        </button>
+                        <input
+                            type="number"
+                            id="guests"
+                            className={styles.guestsInput}
+                            value={guests}
+                            onChange={handleGuestsChange}
+                            min="1"
+                        />
+                        <button
+                            type="button"
+                            className={styles.guestsButton}
+                            onClick={incrementGuests}
+                        >
+                            <FontAwesomeIcon icon={faPlus} />
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" className="button large primary green mb-4">Book Now</button>
             </form>
         </div>
     );
 };
+
 
 BookingForm.propTypes = {
     venueId: PropTypes.string.isRequired,
