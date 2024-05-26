@@ -7,6 +7,8 @@ import { AuthProvider } from './contexts/AuthContext';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import 'leaflet/dist/leaflet.css';
+import './css/custom.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

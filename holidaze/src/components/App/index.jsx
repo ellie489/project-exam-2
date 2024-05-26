@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Navbar from '../Layout/Navbar';
+import Layout from '../Layout';
 import Homepage from '../../pages/Home';
 import LoginOrRegister from '../Auth/LoginOrRegister';
 import RegisterAsManager from '../Auth/RegisterAsManager';
 import CompleteProfile from '../Profile/EditProfile';
 import CustomerDashboard from '../../pages/CustomerDashboard';
 import ManagerDashboard from '../../pages/ManagerDashboard';
-import Header from '../Layout/Header';
-import Footer from '../Layout/Footer';
 import NotFound from '../../pages/NotFound';
 import Profile from '../Profile/index';
 import EditProfile from '../Profile/EditProfile';
@@ -20,12 +18,11 @@ import MyVenues from '../Manager/MyVenues';
 import EditVenue from '../Manager/EditVenue';
 import ManagerVenueDetails from '../Manager/VenueDetails';
 import CustomerVenueDetails from '../Customer/VenueDetails';
-
+import CreateVenueSuccess from '../Manager/CreateVenueSuccess';
 const App = () => {
   return (
-      <div>
-          <Navbar />
-          <div className="container mt-4">
+      <div><Layout>
+          <div className="container mt-3">
               <Routes>
                   <Route path="/" element={<Homepage />} />
                   <Route path="/login-or-register" element={<LoginOrRegister />} />
@@ -42,11 +39,12 @@ const App = () => {
                   <Route path="/my-bookings" element={<MyBookings />} />
                   <Route path="/my-venues" element={<MyVenues />} />
                   <Route path="/create-venue" element={<CreateVenue />} /> 
+                  <Route path="/create-venue-success/:id" element={<CreateVenueSuccess />} />
                   <Route path="/edit-venue/:id" element={<EditVenue />} />
                   <Route path="*" element={<NotFound />} />
               </Routes>
           </div>
-      </div>
+      </Layout></div>
   );
 };
 
