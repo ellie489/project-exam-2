@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserProfile } from '../../services/api/profiles';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button, Spinner } from 'react-bootstrap';
 import styles from './index.module.css';
-import commonStyles from '../../scss/common.module.scss'
+import commonStyles from '../../scss/common.module.scss';
+import ErrorBox from '../ErrorBox';
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +20,8 @@ const Profile = () => {
         setUser(profileData.data);
       } catch (error) {
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -27,12 +32,22 @@ const Profile = () => {
     navigate('/edit-profile');
   };
 
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
+
   if (error) {
-    return <p className="text-danger">Error: {error}</p>;
+    return <ErrorBox message={error} />;
   }
 
   if (!user) {
-    return <p>Loading...</p>;
+    return <p>No user data available.</p>;
   }
 
   return (
@@ -45,13 +60,13 @@ const Profile = () => {
           <Image src={user.avatar.url} alt={user.avatar.alt} roundedCircle className={styles.profileAvatar} />
           <h3 className={styles.mt3}>{user.name}</h3>
         </Col>
-        <Col xs={12} md={7}className='mb-3'>
+        <Col xs={12} md={7} className="mb-3">
           <p>{user.bio}</p>
         </Col>
-      <Col xs={12} md={2} className="text-center m-auto">
-                    <Button onClick={handleEditProfile} className="button large primary blue mb-4">Edit Profile</Button>
-        </Col> 
-        </Row>
+        <Col xs={12} md={2} className="text-center m-auto">
+          <Button onClick={handleEditProfile} className="button large primary blue mb-4">Edit Profile</Button>
+        </Col>
+      </Row>
     </Container>
   );
 };

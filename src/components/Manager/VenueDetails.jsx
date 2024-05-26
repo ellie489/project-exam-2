@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { fetchVenueById } from '../../services/api/venues';
-import { Container, Row, Col, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Modal, Spinner } from 'react-bootstrap';
 import ErrorBox from '../ErrorBox';
 
 const ManagerVenueDetails = () => {
@@ -30,7 +30,13 @@ const ManagerVenueDetails = () => {
     }, [id]);
 
     if (loading) {
-        return <p>Loading venue details...</p>;
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
+        );
     }
 
     if (error) {
