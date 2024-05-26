@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { deleteVenue } from '../../services/api/venues';
 import { fetchManagerVenues } from '../../services/api/profiles';
+import { Card, Button, Row, Col, Container } from 'react-bootstrap';
 
 const MyVenues = () => {
     const { user } = useAuth();
@@ -55,47 +56,39 @@ const MyVenues = () => {
     }
 
     return (
-        <div className="my-venues">
+        <Container className="my-venues">
             <h2>My Venues</h2>
             {success && <p className="text-success">{success}</p>}
             <Link to="/create-venue" className="btn btn-primary mb-3">Create New Venue</Link>
             {venues.length === 0 ? (
                 <p>No venues found.</p>
             ) : (
-                <ul>
+                <Row className="justify-content-center">
                     {venues.map((venue) => (
-                        <li key={venue.id}>
-                                   <Link to={`/venues/manager/${venue.id}`}>
-                                <h3>{venue.name}</h3>
-                                {venue.media && venue.media.length > 0 && (
-                                    <img src={venue.media[0].url} alt={venue.media[0].alt} />
-                                )}
-                                <p>Price: ${venue.price}</p>
-                                <p>Location: {venue.location.city}, {venue.location.country}</p>
-                            </Link>
-                            <div>
-                                <Link to={`/edit-venue/${venue.id}`} className="btn btn-secondary mr-2">Edit</Link>
-                                <button onClick={() => handleDelete(venue.id)} className="btn btn-danger">Delete</button>
-                            </div>
-                            {venue.bookings && venue.bookings.length > 0 && (
-                                <div className="bookings">
-                                    <h4>Bookings</h4>
-                                    <ul>
-                                        {venue.bookings.map((booking) => (
-                                            <li key={booking.id}>
-                                                <p>From: {new Date(booking.dateFrom).toLocaleDateString()}</p>
-                                                <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
-                                                <p>Guests: {booking.guests}</p>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </li>
+                        <Col md={10} lg={6} key={venue.id} className="mb-4">
+                            <Card className="h-100">
+                                <Link to={`/venues/manager/${venue.id}`} className="text-decoration-none">
+                                    {venue.media && venue.media.length > 0 && (
+                                        <Card.Img variant="top" src={venue.media[0].url} alt={venue.media[0].alt} />
+                                    )}
+                                    <Card.Body>
+                                        <Card.Title>{venue.name}</Card.Title>
+                                        <Card.Text>
+                                            <p>Price: ${venue.price}</p>
+                                            <p>Location: {venue.location.city}, {venue.location.country}</p>
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Link>
+                                <Card.Footer className="d-flex justify-content-between">
+                                    <Link to={`/edit-venue/${venue.id}`} className="btn btn-secondary">Edit</Link>
+                                    <Button variant="danger" onClick={() => handleDelete(venue.id)}>Delete</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
                     ))}
-                </ul>
+                </Row>
             )}
-        </div>
+        </Container>
     );
 };
 
