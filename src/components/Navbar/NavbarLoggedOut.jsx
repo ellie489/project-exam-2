@@ -8,9 +8,6 @@ const LoggedOutNavbar = () => (
         <Nav.Item>
             <Nav.Link as={Link} to="/login-or-register">Login</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-            <Nav.Link as={Link} to="/register-manager">Register</Nav.Link>
-        </Nav.Item>
     </Nav>
 );
 
