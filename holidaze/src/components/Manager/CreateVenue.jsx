@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import { createVenue } from '../../services/api/venues';
 import 'leaflet/dist/leaflet.css';
@@ -145,14 +145,14 @@ const CreateVenue = () => {
     const incrementGuests = () => {
         setVenueData((prevData) => ({
             ...prevData,
-            maxGuests: prevData.maxGuests + 1,
+            maxGuests: parseInt(prevData.maxGuests || 0, 10) + 1,
         }));
     };
 
     const decrementGuests = () => {
         setVenueData((prevData) => ({
             ...prevData,
-            maxGuests: Math.max(prevData.maxGuests - 1, 1),
+            maxGuests: Math.max(parseInt(prevData.maxGuests || 0, 10) - 1, 0),
         }));
     };
 
@@ -212,8 +212,11 @@ const CreateVenue = () => {
                             className={styles.guestsInput}
                             name="maxGuests"
                             value={venueData.maxGuests}
-                            onChange={handleChange}
-                            min="1"
+                            onChange={(e) => setVenueData({
+                                ...venueData,
+                                maxGuests: parseInt(e.target.value, 10),
+                            })}
+                            min="0"
                         />
                         <button
                             type="button"
@@ -259,7 +262,7 @@ const CreateVenue = () => {
                         className="btn btn-secondary"
                         onClick={handleAddMedia}
                     >
-                        Add More
+                        <FontAwesomeIcon icon={faPlus} /> Add More
                     </button>
                 </div>
                 <div className={styles.formGroup}>
