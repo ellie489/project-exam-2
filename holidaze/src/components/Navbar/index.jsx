@@ -4,7 +4,7 @@ import LoggedOutNavbar from './NavbarLoggedOut';
 import NavbarCustomer from '../Customer/NavbarCustomer';
 import NavbarManager from '../Manager/NavbarManager';
 
-const Navbar = () => {
+const MyNavbar = () => {
   const { user, logout } = useAuth();
 
   const handleLogout = () => {
@@ -22,4 +22,4 @@ const Navbar = () => {
   return <NavbarCustomer handleLogout={handleLogout} />;
 };
 
-export default Navbar;
+export default MyNavbar;

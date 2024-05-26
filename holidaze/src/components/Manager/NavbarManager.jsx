@@ -1,30 +1,22 @@
 import React from 'react';
+import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const NavbarManager = ({ handleLogout }) => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" to="/">MyApp</Link>
-        <div className="collapse navbar-collapse">
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/my-venues">My Venues</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/bookings">Bookings</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/profile">My Profile</Link>
-                </li>
-                <li className="nav-item">
-                    <button className="nav-link btn btn-link" onClick={handleLogout}>Log Out</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <Nav className="ms-auto">
+    <Nav.Item>
+      <Nav.Link as={Link} to="/my-venues">My Venues</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link as={Link} to="/profile">My Profile</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link as={Link} to="/" onClick={handleLogout}>Log Out</Nav.Link>
+    </Nav.Item>
+  </Nav>
 );
-
 NavbarManager.propTypes = {
     handleLogout: PropTypes.func.isRequired,
-};
+  };
 export default NavbarManager;
