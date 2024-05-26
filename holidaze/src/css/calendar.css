@@ -1,0 +1,57 @@
+@import '../../node_modules/react-calendar/dist/Calendar.css';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+.react-calendar {
+  width: 100%;
+  background: none;
+  font-family: "Poppins", Helvetica, sans-serif;
+  line-height: 1.125em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  height: 60px;
+  margin-bottom: 1em;
+}
+
+.react-calendar__navigation button {
+  min-width: 2.5rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  margin: 2px;
+  border-radius: 8px;
+  color: #2f4296;
+  cursor: pointer;
+}
+
+.react-calendar__navigation button:disabled {
+  background: #f0f0f0;
+  color: #d6d6d6;
+  cursor: default;
+}
+
+.react-calendar__tile {
+  max-width: 100%;
+  text-align: center;
+  padding: 0.75em;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  color: #000;
+  cursor: pointer;
+}
+
+.react-calendar__tile--active {
+  background: #208FBC;
+  color: white;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #006161;
+}
+
+/*# sourceMappingURL=calendar.css.map */

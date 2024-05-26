@@ -1,0 +1,46 @@
+.venues-list {
+  margin-top: 20px;
+}
+
+.customCard {
+  width: 300px;
+  height: 300px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent; /* Set background color to transparent or any other color */
+  box-shadow: none; /* Remove any shadow if present */
+}
+
+.customImage {
+  height: 150px; /* Adjust based on your layout preference */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.customBody {
+  padding: 10px; /* Adjust based on your layout preference */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.customCard a {
+  color: inherit; /* Remove link color changes */
+  text-decoration: none; /* Remove link underline */
+}
+
+.customCard a:hover {
+  color: inherit; /* Remove link color changes on hover */
+  text-decoration: none; /* Remove link underline on hover */
+}
+
+.customCard .card-title {
+  font-size: 1.25rem; /* Adjust based on your preference */
+  margin-bottom: 0.75rem; /* Adjust based on your preference */
+}
+
+.customCard .card-text {
+  font-size: 1rem; /* Adjust based on your preference */
+}

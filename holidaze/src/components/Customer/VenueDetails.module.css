@@ -1,0 +1,24 @@
+.metaList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.metaList li {
+  margin-bottom: 0.5rem;
+}
+
+.mapContainer {
+  width: 100%;
+  height: auto;
+  max-height: 800px;
+  max-width: 1200px;
+}
+.carouselItem img {
+  max-height: 500px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.venueDetailsContainer {
+  margin: 0 auto;
+}
