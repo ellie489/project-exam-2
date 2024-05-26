@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint src/**/*.jsx",
-    "watch": "sass --watch src/scss:src/css"
+    "watch": "sass --watch src/scss:src/css",
+    "docs": "jsdoc -c ./conf.json -r"
   },
   "eslintConfig": {
     "extends": [
@@ -56,6 +57,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "husky": "^9.0.11",
+    "jsdoc": "^4.0.3",
     "lint-staged": "^15.2.2",
     "live-server": "^1.2.2",
     "prettier": "^3.2.5",

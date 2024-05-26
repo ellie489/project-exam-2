@@ -4,6 +4,21 @@ export const headers = {
   'Content-Type': 'application/json',
 };
 
+/**
+ * Generates authentication headers including a bearer token and an API key from local storage.
+ *
+ * @returns {Object} - The headers object containing the Authorization and X-Noroff-API-Key.
+ * @throws {Error} - Throws an error if the token or API key is missing from local storage.
+ *
+ * @example
+ * try {
+ *   const headers = authHeaders();
+ *   console.log(headers);
+ *   // Output: { Authorization: 'Bearer your-token', 'X-Noroff-API-Key': 'your-api-key' }
+ * } catch (error) {
+ *   console.error('Error generating headers:', error.message);
+ * }
+ */
 export const authHeaders = () => {
   const token = localStorage.getItem('token');
   const apiKey = localStorage.getItem('apiKey');
@@ -13,7 +28,6 @@ export const authHeaders = () => {
   }
 
   return {
-    ...headers,
     Authorization: `Bearer ${token}`,
     'X-Noroff-API-Key': apiKey,
   };
