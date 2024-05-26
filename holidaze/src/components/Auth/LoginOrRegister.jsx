@@ -2,9 +2,20 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { loginUser, registerUser } from '../../services/api/auth';
-import styles from './index.module.css'
+import styles from './index.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
+
+/**
+ * LoginOrRegister component provides the user interface for logging in or registering.
+ * It toggles between login and registration forms based on the state.
+ * 
+ * @component
+ * @example
+ * return (
+ *   <LoginOrRegister />
+ * )
+ */
 const LoginOrRegister = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({ name: '', email: '', password: '' });
@@ -13,6 +24,11 @@ const LoginOrRegister = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  /**
+   * Handles the change in input fields and updates the state accordingly.
+   *
+   * @param {Object} e - The event object.
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (isRegistering) {
@@ -22,6 +38,11 @@ const LoginOrRegister = () => {
     }
   };
 
+  /**
+   * Handles the login form submission.
+   *
+   * @param {Object} e - The event object.
+   */
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     if (!credentials.email) {
@@ -41,6 +62,11 @@ const LoginOrRegister = () => {
     }
   };
 
+  /**
+   * Handles the registration form submission.
+   *
+   * @param {Object} e - The event object.
+   */
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (!registerData.name) {
@@ -65,6 +91,11 @@ const LoginOrRegister = () => {
     }
   };
 
+  /**
+   * Toggles between the login and registration forms.
+   *
+   * @param {Object} e - The event object.
+   */
   const toggleForm = (e) => {
     e.preventDefault();
     setIsRegistering(!isRegistering);
@@ -73,6 +104,7 @@ const LoginOrRegister = () => {
       setRegisterData({ ...registerData, email: credentials.email });
     }
   };
+
   return (
     <div className="form-container">
       <div className="form-box">
@@ -156,7 +188,6 @@ const LoginOrRegister = () => {
             </p>
           </div>
         )}
-   
     </div>
   );
 };
