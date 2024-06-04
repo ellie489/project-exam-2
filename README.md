@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Holidaze Accommodation Booking Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image](https://github.com/ellie489/project-exam-2/blob/main/src/Media/Skjermbilde%202024-06-04%20kl.%2012.45.33.png)
 
-## Available Scripts
+A front-end application for booking and managing accommodation venues.
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+Holidaze is an accommodation booking site featuring an interface for both customers and venue managers. Customers can browse, search, and book accommodations, while venue managers can manage their venues and view bookings. This project uses a Noroff API to handle all backend operations.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Key Features:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Browse and search for venues
+- Register and log in
+- View venue details and make a booking
+- Calendar to pick available dates for a booking
+- View and manage bookings
+- Create and manage venues
+- View bookings for a venue
+- Edit profile avatar, banner and bio
 
-### `npm test`
+## Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React.js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com)
+- [Netlify](https://www.netlify.com/)
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repo:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone git@github.com:ellie489/project-exam-2.git
+```
 
-### `npm run eject`
+2. Install the dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Running
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Here is where you detail how to run the app. It typically involves the commands you'd need to run to start the project e.g.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To run the app, run the following commands:
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you have a suggestion that would make this better, fork the repo and create a pull request.
 
-### Code Splitting
+1. Fork the Project
+2. Create your Feature Branch (git checkout -b feature/NewFeature)
+3. Commit your Changes (git commit -m 'Add some NewFeature')
+4. Push to the Branch (git push origin feature/NewFeature)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Any contributions you make are greatly appreciated.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contact
 
-### Making a Progressive Web App
+[My Instagram](https://www.instagram.com/elisabeth.h0pe/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[My LinkedIn](https://www.linkedin.com/in/elisabeth-hope-7103a2199/)
 
-### Advanced Configuration
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[Noroff Online School](https://www.noroff.no/)
 
-### Deployment
+## Links to Project Resources
+- [Figma Prototype](https://www.figma.com/proto/UJNTnQYcGUQrLBpBHR0MSG/Project-Exam-2?page-id=30%3A2149&node-id=30-2330&viewport=830%2C443%2C0.1&t=GfiiPommh1XtA2wV-1&scaling=scale-down&starting-point-node-id=30%3A2150&show-proto-sidebar=1)
+- [Trello Project Board](https://trello.com/b/XgL21meX)
+- [Netlify Live Site](https://gregarious-raindrop-16b1b2.netlify.app/)
+- [Gantt Chart](https://github.com/users/ellie489/projects/2)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Technical Restrictions
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Must use an approved JavaScript Framework **(React >16)**
+- Must use an approved CSS Framework **(Bootstrap >5, CSS Modules)**
+- Must be hosted on an approved Static Host **(Netlify)**
+- Must use an approved Design Application **(Figma)**
+- Must use an approved Planning Application **(Trello, GitHub Projects)**
