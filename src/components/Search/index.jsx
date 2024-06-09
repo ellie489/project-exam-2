@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
-import ErrorBox from '../ErrorBox'; // Ensure the path to ErrorBox is correct
+import { InputGroup, FormControl, Button, Spinner } from 'react-bootstrap';
+import ErrorBox from '../ErrorBox';
 
-const Search = ({ onSearchResults }) => {
+const Search = ({ onSearchResults, loading }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
 
@@ -35,8 +35,11 @@ const Search = ({ onSearchResults }) => {
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           placeholder="Search for venues..."
+          disabled={loading}
         />
-        <Button onClick={handleSearch} variant="primary">Search</Button>
+        <Button onClick={handleSearch} variant="primary" disabled={loading}>
+          {loading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : 'Search'}
+        </Button>
       </InputGroup>
       {error && <ErrorBox message={error} />}
     </>
@@ -45,6 +48,7 @@ const Search = ({ onSearchResults }) => {
 
 Search.propTypes = {
   onSearchResults: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Search;
