@@ -41,15 +41,6 @@ const RegisterAsManager = () => {
         <h2>Register as Manager</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Name:</label>
-            <Controller
-              name="name"
-              control={control}
-              render={({ field }) => <input {...field} className="form-control" />}
-            />
-            {errors.name && <p className="error">{errors.name.message}</p>}
-          </div>
-          <div className="form-group">
             <label>Email:</label>
             <Controller
               name="email"
@@ -57,6 +48,15 @@ const RegisterAsManager = () => {
               render={({ field }) => <input type="email" {...field} className="form-control" />}
             />
             {errors.email && <p className="error">{errors.email.message}</p>}
+          </div>
+          <div className="form-group">
+            <label>Name:</label>
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => <input {...field} className="form-control" />}
+            />
+            {errors.name && <p className="error">{errors.name.message}</p>}
           </div>
           <div className="form-group">
             <label>Password:</label>
