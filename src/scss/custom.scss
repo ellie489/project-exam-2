@@ -152,7 +152,7 @@ body {
   font: inherit;
 }
 
-.card.custom-card {
+.card.custom-card, .custom-card {
   width: 100%;
   max-width: 300px;
   height: auto;
@@ -285,4 +285,8 @@ ul, ol {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
