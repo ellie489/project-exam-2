@@ -36,7 +36,6 @@ const Profile = () => {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
         <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
         </Spinner>
       </div>
     );
