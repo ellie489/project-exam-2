@@ -2,8 +2,9 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from '../Layout';
 import Homepage from '../../pages/Home';
-import LoginOrRegister from '../Auth/LoginOrRegister';
-import RegisterAsManager from '../Auth/RegisterAsManager';
+import Login from '../Auth/Login';
+import RegisterManager from '../Auth/RegisterManager';
+import RegisterCustomer from '../Auth/RegisterCustomer';
 import NotFound from '../../pages/NotFound';
 import Profile from '../Profile/index';
 import EditProfile from '../Profile/EditProfile';
@@ -25,8 +26,9 @@ const App = () => {
               <Routes>
                   <Route path="/" element={<Homepage />} />
                   <Route path="/about" element={<AboutPage />} /> 
-                  <Route path="/login-or-register" element={<LoginOrRegister />} />
-                  <Route path="/register-manager" element={<RegisterAsManager />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register-manager" element={<RegisterManager />} />
+                  <Route path="/register-customer" element={<RegisterCustomer />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/edit-profile" element={<EditProfile />} />
                   <Route path="/venues/manager/:id" element={<ManagerVenueDetails />} />

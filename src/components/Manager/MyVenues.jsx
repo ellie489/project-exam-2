@@ -16,7 +16,7 @@ const MyVenues = () => {
 
     useEffect(() => {
         if (!user) {
-            navigate('/login-or-register');
+            navigate('/login');
             return;
         }
 

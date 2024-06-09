@@ -15,7 +15,7 @@ const CustomerNavbar = ({ handleLogout }) => (
             <Nav.Link as={Link} to="/my-bookings">My Bookings</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link as={Link} to="/login-or-register" onClick={handleLogout}>Log Out</Nav.Link>
+            <Nav.Link as={Link} to="/login" onClick={handleLogout}>Log Out</Nav.Link>
         </Nav.Item>
     </Nav>
 );

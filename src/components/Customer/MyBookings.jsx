@@ -15,7 +15,7 @@ const MyBookings = () => {
 
     useEffect(() => {
         if (!user) {
-            navigate('/login-or-register');
+            navigate('/login');
             return;
         }
 

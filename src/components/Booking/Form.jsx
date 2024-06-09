@@ -48,7 +48,7 @@ const BookingForm = ({ venueId }) => {
         e.preventDefault();
 
         if (!user) {
-            navigate('/login-or-register');
+            navigate('/login');
             return;
         }
 

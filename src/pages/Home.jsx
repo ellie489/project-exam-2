@@ -12,7 +12,7 @@ const Homepage = () => {
             <h1 className="h1">Welcome to Holidaze!</h1>
             <h2 className={styles.thinHeader}>Find your new home away from home</h2>
             {!user && (
-                <Link to="/login-or-register" className="button large primary green">
+                <Link to="/login" className="button large primary green">
                     Sign in to book
                 </Link>
             )}

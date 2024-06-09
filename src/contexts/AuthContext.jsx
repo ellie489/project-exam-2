@@ -31,11 +31,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', userData.token);
     localStorage.setItem('apiKey', userData.apiKey);
     localStorage.setItem('venueManager', userData.venueManager.toString());
-    if (userData.venueManager) {
-      navigate('/manager-dashboard');
-    } else {
-      navigate('/customer-dashboard');
-    }
+    navigate('/profile');
   };
 
   const logout = () => {
@@ -44,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('apiKey');
     localStorage.removeItem('venueManager');
-    navigate('/login-or-register'); 
+    navigate('/login');
   };
 
   return (
@@ -57,3 +53,5 @@ export const AuthProvider = ({ children }) => {
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default AuthProvider;

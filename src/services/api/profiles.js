@@ -22,7 +22,7 @@ export async function fetchUserProfile(username) {
     if (error.message === 'Invalid authorization token') {
       localStorage.removeItem('token');
       localStorage.removeItem('venueManager');
-      window.location.href = '/login-or-register';
+      window.location.href = '/login';
     }
     throw error;
   }

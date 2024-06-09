@@ -11,8 +11,10 @@ const MyNavbar = () => {
 
     const handleLogout = () => {
         logout();
-        navigate('/login-or-register'); 
+        navigate('/login'); 
     };
+
+    console.log('Current user:', user);
 
     if (!user) {
         return <LoggedOutNavbar />;

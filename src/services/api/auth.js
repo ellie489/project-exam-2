@@ -1,5 +1,6 @@
 import { API_BASE_URL, API_HOLIDAZE_URL } from './config';
 import { makeRequest } from './utils';
+import { authHeaders } from './config';
 
 /**
  * Creates an API key for a user.
@@ -26,7 +27,7 @@ export async function createApiKey(token) {
     `${API_BASE_URL}/auth/create-api-key`,
     'POST',
     { name: 'My API Key name' },
-    headers,
+    headers
   );
 
   if (response.data && response.data.key) {
@@ -45,7 +46,7 @@ export async function loginUser(credentials, params = {}) {
   const response = await makeRequest(
     `${API_BASE_URL}/auth/login?${queryString}`,
     'POST',
-    credentials,
+    credentials
   );
 
   const { accessToken, name, venueManager } = response.data;
@@ -79,6 +80,6 @@ export async function fetchUserProfile(username) {
     `${API_HOLIDAZE_URL}/profiles/${username}`,
     'GET',
     null,
-    headers,
+    headers
   );
 }

@@ -9,7 +9,7 @@ const LoggedOutNavbar = () => (
             <Nav.Link as={Link} to="/about">About</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-            <Nav.Link as={Link} to="/login-or-register">Login</Nav.Link>
+            <Nav.Link as={Link} to="/login">Login</Nav.Link>
         </Nav.Item>
     </Nav>
 );

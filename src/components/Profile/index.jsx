@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchUserProfile } from '../../services/api/profiles';
+import { fetchUserProfile } from '../../services/api/auth';
 import { Container, Row, Col, Image, Button, Spinner } from 'react-bootstrap';
 import styles from './index.module.css';
 import commonStyles from '../../scss/common.module.scss';
